@@ -91,8 +91,8 @@ func SearchZipCode(zipCode string) (*ZipCodeData, error) {
 	}
 }
 
-func getZipCodeFromBrasilAPI(cep string, ch chan<- *ZipCodeData) {
-	req, err := http.NewRequest("GET", fmt.Sprintf(requestURLBrasilAPI, cep), nil)
+func getZipCodeFromBrasilAPI(zipCode string, ch chan<- *ZipCodeData) {
+	req, err := http.NewRequest("GET", fmt.Sprintf(requestURLBrasilAPI, zipCode), nil)
 	if err != nil {
 		return
 	}
@@ -112,8 +112,8 @@ func getZipCodeFromBrasilAPI(cep string, ch chan<- *ZipCodeData) {
 	ch <- r.mapToZipCodeData()
 }
 
-func getZipCodeFromViaCEP(cep string, msg chan<- *ZipCodeData) {
-	req, err := http.NewRequest("GET", fmt.Sprintf(requestURLViaCEP, cep), nil)
+func getZipCodeFromViaCEP(zipCode string, msg chan<- *ZipCodeData) {
+	req, err := http.NewRequest("GET", fmt.Sprintf(requestURLViaCEP, zipCode), nil)
 	if err != nil {
 		return
 	}
